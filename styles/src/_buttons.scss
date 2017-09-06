@@ -1,0 +1,33 @@
+.main-button {
+  color: black;
+  background: #fff;
+  border: 1px solid #ddd;
+  display: block;
+  font: 11px Montserrat,
+  sans-serif;
+  letter-spacing: 2px;
+  padding: 10px 0;
+  width: 20%;
+  text-transform: uppercase;
+  margin: 10px auto;
+  text-align: center;
+  position: relative;
+  top: 5px;
+  transition: all 0.25s ease-out;
+}
+
+.main-button:hover {
+  border-color: #eee;
+  color: $light-purple;
+}
+
+.main-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-button {
+    width: 40%
+  }
+}

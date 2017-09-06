@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <ul class="navbar-toggle nav-logo">
+        <li><a href="/">Spotter</a></li>
+      </ul> 
+      <button type="button" class="navbar-toggle nav-menu" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="full-nav"><a href="/">Spotter</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/search"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i> Find a Gym</a></li>
+        <% if(!user) { %>
+        <li><a href="/user/login">Login</a></li>
+        <li><a href="/user/login">Signup</a></li>
+        <% } else { %>
+        <li>
+          <a href="/profile/<%=user.id%>">
+            <img class="nav-avatar" src="<%= user.avatar_url %>">&nbsp;&nbsp;<%= user.name %>
+          </a>
+        </li>
+        <li><a href="/user/logout">Log out</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
