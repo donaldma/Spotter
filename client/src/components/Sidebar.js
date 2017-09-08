@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SmallDetails from './SmallDetails'
-// import LargeDetails from './LargeDetails'
+import LargeDetails from './LargeDetails'
 import axios from 'axios';
 import Moment from 'moment';
 
@@ -8,41 +8,43 @@ class SideBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedEvent: null
+      selectedGym: null
     }
   }
 
   toggleHidden(e) {
     this.setState({
-      selectedEvent: e
+      selectedGym: e
     })
   }
 
   renderGyms() {
     return this.props.gyms.map((e, index) => {
-      return <SmallDetails 
-        key={index}
-        gym={e}
-        toggleHidden={this.toggleHidden.bind(this, e)} 
+      return (
+        <SmallDetails 
+          key={index}
+          gym={e}
+          toggleHidden={this.toggleHidden.bind(this, e)} 
         />
+      );
     })
   }
 
-  // renderLargeDetails() {
-  //   return <LargeDetails 
-  //     event={this.state.selectedEvent}
-  //     user={this.props.user}    
-  //     toggleHidden={this.toggleHidden.bind(this)} 
-  //     RSVP={this.RSVP.bind(this)} 
-  //     CancelRSVP={this.CancelRSVP.bind(this)}    
-  //   />
-  // }
+  renderLargeDetails() {
+    return (
+      <LargeDetails  
+        gym={this.state.selectedGym}  
+        toggleHidden={this.toggleHidden.bind(this)}   
+      />
+    );
+  }
 
   render() {
     return (
       <div>
         <div className="sidebar">
-          {!this.state.selectedEvent && this.renderGyms() }   
+          { !this.state.selectedGym && this.renderGyms() }  
+          { this.state.selectedGym && this.renderLargeDetails() }     
         </div>
       </div>      
     );

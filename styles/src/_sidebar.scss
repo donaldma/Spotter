@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: #DDDDDD;
+  background: #f7f8f9;
   left: auto;
   display: block;
   width: 380px;
@@ -16,4 +16,8 @@
   .sidebar {
     display: none !important;
   }
+}
+
+.divider {
+  margin: 0 10px;
 }

@@ -42,9 +42,15 @@ const SearchBoxGoogleMap = withGoogleMap(props => (
       inputPlaceholder="Location"
       inputStyle={INPUT_STYLE}
     />
-    {props.markers.map((marker, index) => (
-      <Marker position={marker.position} key={index} />
-    ))}
+    { props.gyms.map((gym, index) => {
+      return (
+        <Marker 
+        key={index}
+        position={{ lat: gym.geometry.location.lat(), lng: gym.geometry.location.lng() }} 
+        onClick={props.onMarkerClick}
+        />
+      );
+    })}
   </GoogleMap>
 ));
 
@@ -52,7 +58,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 10,
+      zoom: 14,
       bounds: null,
       center: {
         lat: 49.2827291,
@@ -107,19 +113,19 @@ class Map extends Component {
     });
   }
   
-  // handleMarkerClick = (e) => {
-  //   const events = this.props.events
-  //   events.map((event) => {
-  //     const lat = e.latLng.lat();
-  //     const lng = e.latLng.lng();
-  //     const threshold = 0.000001;
-  //     const event_lat = parseFloat(event.latitude);
-  //     const event_lng = parseFloat(event.longitude);
-  //     if (Math.abs(lat - event_lat) < threshold && Math.abs(lng - event_lng) < threshold) {
-  //       this.refs.sidebar.toggleHidden(event);       
-  //     }
-  //   })
-  // }
+  handleMarkerClick = (e) => {
+    const { gyms } = this.props
+    gyms.map((gym) => {
+      const lat = e.latLng.lat();
+      const lng = e.latLng.lng();
+      const threshold = 0.000001;
+      const gym_lat = gym.geometry.location.lat();
+      const gym_lng = gym.geometry.location.lng();
+      if (Math.abs(lat - gym_lat) < threshold && Math.abs(lng - gym_lng) < threshold) {
+        this.refs.sidebar.toggleHidden(gym);       
+      }
+    })
+  }
  
   render() {
     return (
@@ -136,7 +142,7 @@ class Map extends Component {
           onSearchBoxMounted={this.handleSearchBoxMounted}
           onPlacesChanged={this.handlePlacesChanged}
           markers={this.state.markers}
-          events={this.props.events}
+          gyms={this.props.gyms}
           onMarkerClick={this.handleMarkerClick}
           zoom={this.state.zoom}
         />

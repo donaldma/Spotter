@@ -6,6 +6,12 @@ body {
   line-height: 28px;
 }
 
+.container {
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 button:focus {
   outline: 0;
 }

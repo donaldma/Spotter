@@ -29,9 +29,8 @@
   overflow: hidden;
   text-overflow: ellipsis;  
   margin: 0;
-  // color: white;
   text-align: left;
-  font-size: 2rem;
+  font-size: 2em;
   flex: 1;
   font-weight: 400;
 }
@@ -45,22 +44,22 @@
 .smalldetails-attendees {
   padding-left: 16px;
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   line-height: 1;
 }
 
 .smalldetails-date {
-  font-size: 2.5rem;
+  font-size: 2.5em;
 }
 
 .smalldetails-time {
   display: block;
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 .smalldetails-location {
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.6em;
 }
 
 .smalldetails-footer {

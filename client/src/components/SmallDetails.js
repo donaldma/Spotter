@@ -20,11 +20,10 @@ class SmallDetails extends Component {
     const closed_color = {
       color: '#f99f02'
     }
-
     if(gym.opening_hours && gym.opening_hours.open_now) {
       return (
         <div className="detailcontainer">
-          <a href="#" className="smalldetails-link">
+          <a href="#" onClick={this.handleClick} className="smalldetails-link">
             <div className="smalldetails-container">
               <div className="smalldetails-header">
                 <h3 className="smalldetails-title">{this.props.gym.name}</h3>
@@ -45,7 +44,7 @@ class SmallDetails extends Component {
     if(gym.opening_hours && !gym.opening_hours.open_now) {
       return (
         <div className="detailcontainer">
-          <a href="#" className="smalldetails-link">
+          <a href="#" onClick={this.handleClick} className="smalldetails-link">
             <div className="smalldetails-container">
               <div className="smalldetails-header">
                 <h3 className="smalldetails-title">{this.props.gym.name}</h3>
@@ -65,7 +64,7 @@ class SmallDetails extends Component {
     } 
     return (
       <div className="detailcontainer">
-        <a href="#" className="smalldetails-link">
+        <a href="#" onClick={this.handleClick} className="smalldetails-link">
           <div className="smalldetails-container">
             <div className="smalldetails-header">
               <h3 className="smalldetails-title">{this.props.gym.name}</h3>
