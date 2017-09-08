@@ -79,6 +79,10 @@
   text-align: left;
 }
 
+.largedetails-icon {
+  margin-top: 0.3em;
+}
+
 a.largedetails-directions {
   background-color: #4f99e2;
   border-radius: 4px;
@@ -107,4 +111,9 @@ a.largedetails-eventpage {
   border: none;
   color: #fff;
   text-decoration: none;
+}
+
+.stars {
+  float: right;
+  margin-right: 6em;
 }

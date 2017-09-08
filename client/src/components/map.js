@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGyms, clearGyms } from '../actions';
+import { fetchGyms } from '../actions';
 import { bindActionCreators } from 'redux';
 
 import {
@@ -157,7 +157,7 @@ class Map extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchGyms, clearGyms }, dispatch);
+  return bindActionCreators({ fetchGyms }, dispatch);
 }
 
 function mapStateToProps(state) {
