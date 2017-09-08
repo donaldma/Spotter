@@ -4,7 +4,8 @@ export const FETCH_GYMS = 'fetch_gyms';
 export const CLEAR_GYMS = 'clear_gyms';
 
 export function fetchGyms(lat, lng) {
-  return (dispatch) => {
+  return dispatch => {
+    dispatch(clearGyms());
     var location = new google.maps.LatLng(lat, lng);
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -22,9 +23,11 @@ export function fetchGyms(lat, lng) {
     service.nearbySearch(request, callback);
 
     function callback(results, status) {
-      for (var i = 0; i < results.length; i++) {
-        var place = results[i];
-        dispatch(setNearbySearchResult(place));
+      if (status == google.maps.places.PlacesServiceStatus.OK) {        
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          dispatch(setNearbySearchResult(place));
+        }
       }
     }
   }

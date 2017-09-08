@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default function (state = [], action) {
   switch (action.type) {
     case CLEAR_GYMS:
-      return state;
+      return state = [];
     case FETCH_GYMS:
       return [ action.payload.place, ...state ];
     default:
