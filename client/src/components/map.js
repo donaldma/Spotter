@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchGyms, clearGyms } from '../actions';
+import { bindActionCreators } from 'redux';
 
 import {
   withGoogleMap,
@@ -7,6 +10,7 @@ import {
 } from "react-google-maps/lib";
 
 import SearchBox from "react-google-maps/lib/places/SearchBox";
+import SideBar from "./Sidebar";
 
 const INPUT_STYLE = {
   boxSizing: `border-box`,
@@ -38,6 +42,9 @@ const SearchBoxGoogleMap = withGoogleMap(props => (
       inputPlaceholder="Location"
       inputStyle={INPUT_STYLE}
     />
+    {props.markers.map((marker, index) => (
+      <Marker position={marker.position} key={index} />
+    ))}
   </GoogleMap>
 ));
 
@@ -52,28 +59,27 @@ class Map extends Component {
         lng: -123.12073750000002,
       },
       markers: [],
+      gyms: [],
+      lat: null,
+      lng: null
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchGyms(this.state.center.lat, this.state.center.lng);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.gyms !== nextProps.gyms) {
+      this.setState({
+        gyms: nextProps.gyms
+      })
+    }
   }
 
   handleMapMounted = (map) => {
     this._map = map;
   }
-
-  // handleBoundsChanged = () => {
-  //   this.setState({
-  //     bounds: this._map.getBounds(),
-  //     center: this._map.getCenter(),
-  //   });
-  //   const bound_a = {
-  //     lat: this.state.bounds.f.b,
-  //     lng: this.state.bounds.b.b
-  //   }
-  //   const bound_b = {
-  //     lat: this.state.bounds.f.f,
-  //     lng: this.state.bounds.b.f
-  //   } 
-  //   this.props.locationFilter(bound_a, bound_b);
-  // }
 
   handleSearchBoxMounted = (searchBox) => {
     this._searchBox = searchBox;
@@ -89,10 +95,15 @@ class Map extends Component {
 
     // Set markers; set map center to first search result
     const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
-
+    
     this.setState({
       zoom: 15,
       center: mapCenter,
+      markers,
+      lat: places[0].geometry.location.lat(),
+      lng: places[0].geometry.location.lng()
+    }, () => {
+    this.props.fetchGyms(this.state.center.lat(), this.state.center.lng());
     });
   }
   
@@ -122,18 +133,31 @@ class Map extends Component {
           }
           center={this.state.center}
           onMapMounted={this.handleMapMounted}
-          onBoundsChanged={this.handleBoundsChanged}
           onSearchBoxMounted={this.handleSearchBoxMounted}
-          bounds={this.state.bounds}
           onPlacesChanged={this.handlePlacesChanged}
           markers={this.state.markers}
           events={this.props.events}
           onMarkerClick={this.handleMarkerClick}
           zoom={this.state.zoom}
         />
+        <SideBar 
+          ref="sidebar"
+          gyms={this.state.gyms}
+        />
+        <div id="map" />
       </div>
     );
   }
 }
 
-export default Map;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchGyms, clearGyms }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    gyms: state.gyms
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 
-import Map from './map';
+import Map from './Map';
 
 class App extends Component {
   render() {
