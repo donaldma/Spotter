@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SmallDetails from './SmallDetails'
-import LargeDetails from './LargeDetails'
 import axios from 'axios';
 import Moment from 'moment';
+import SmallDetails from './SmallDetails'
+import LargeDetails from './LargeDetails'
 
 class SideBar extends Component {
   constructor(props) {

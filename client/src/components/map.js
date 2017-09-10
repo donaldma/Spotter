@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchGyms } from '../actions';
-import { bindActionCreators } from 'redux';
-
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps/lib";
-
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps/lib";
 import SearchBox from "react-google-maps/lib/places/SearchBox";
 import SideBar from "./Sidebar";
 
@@ -32,7 +25,6 @@ const SearchBoxGoogleMap = withGoogleMap(props => (
     ref={props.onMapMounted}
     zoom={props.zoom}
     center={props.center}
-    onBoundsChanged={props.onBoundsChanged}
   >
     <SearchBox
       ref={props.onSearchBoxMounted}
@@ -64,23 +56,12 @@ class Map extends Component {
         lat: 49.2827291,
         lng: -123.12073750000002,
       },
-      markers: [],
-      gyms: [],
-      lat: null,
-      lng: null
+      markers: []
     };
   }
 
   componentDidMount() {
     this.props.fetchGyms(this.state.center.lat, this.state.center.lng);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.gyms !== nextProps.gyms) {
-      this.setState({
-        gyms: nextProps.gyms
-      })
-    }
   }
 
   handleMapMounted = (map) => {
@@ -103,13 +84,13 @@ class Map extends Component {
     const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
     
     this.setState({
-      zoom: 15,
+      zoom: 14,
       center: mapCenter,
       markers,
       lat: places[0].geometry.location.lat(),
       lng: places[0].geometry.location.lng()
     }, () => {
-    this.props.fetchGyms(this.state.center.lat(), this.state.center.lng());
+      this.props.fetchGyms(this.state.center.lat(), this.state.center.lng());
     });
   }
   
@@ -129,6 +110,7 @@ class Map extends Component {
  
   render() {
     return (
+      <div>
       <div className="mapcontainer">
         <SearchBoxGoogleMap
           containerElement={
@@ -146,18 +128,15 @@ class Map extends Component {
           onMarkerClick={this.handleMarkerClick}
           zoom={this.state.zoom}
         />
+      </div>
         <SideBar 
           ref="sidebar"
-          gyms={this.state.gyms}
+          gyms={this.props.gyms}
         />
         <div id="map" />
       </div>
     );
   }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchGyms }, dispatch);
 }
 
 function mapStateToProps(state) {
@@ -166,4 +145,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(mapStateToProps, { fetchGyms })(Map);

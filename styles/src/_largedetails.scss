@@ -73,34 +73,56 @@
   font-size: 1.6em;
 }
 
-.largedetails-location {
+.largedetails-body-text {
   display: block;
   font-size: 2em;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.largedetails-icon {
-  margin-top: 0.3em;
-}
 
-a.largedetails-directions {
-  background-color: #4f99e2;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
-  width: 100%;
-  font-size: 1.6em;
-  text-align: center;
+.largedetails-body-text-website {
   display: block;
-  border: none;
-  color: #fff;
-  text-decoration: none;
+  font-size: 2em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 767px) {
+  .largedetails-body-text {
+    display: block;
+    font-size: 2em;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .largedetails-body-text-website {
+    display: block;
+    font-size: 2em;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 50px;
+  }
 }
 
 .largedetails-detailbody {
   display: block;
 }
 
-a.largedetails-eventpage {
+.largedetails-gympage {
+  margin-top: 20px;
+}
+
+a.largedetails-gympage {
   background-color: #3d8fdf;
   border-radius: 4px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
@@ -116,4 +138,27 @@ a.largedetails-eventpage {
 .stars {
   float: right;
   margin-right: 6em;
+}
+
+@media only screen and (max-width: 767px) {
+  .stars {
+    float: right;
+  }
+}
+
+.loading {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 2em;
+}
+
+.largedetails-row {
+  margin-top: 20px;
+}
+
+.big-icon {
+  font-size: 3em;
+  margin-top: 0.1em;
+  position: absolute;
+  left: 15px;
 }

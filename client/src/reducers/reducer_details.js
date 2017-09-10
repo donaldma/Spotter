@@ -1,11 +1,11 @@
-import { FETCH_GYMS, CLEAR_GYMS, FETCH_DETAILS } from '../actions';
+import { FETCH_DETAILS, CLEAR_DETAILS } from '../actions';
 import _ from 'lodash';
 
 export default function (state = [], action) {
   switch (action.type) {
-    case CLEAR_GYMS:
+    case CLEAR_DETAILS:
       return state = [];
-    case FETCH_GYMS:
+    case FETCH_DETAILS:
       return [ action.payload.place, ...state ];
     default:
       return state;
