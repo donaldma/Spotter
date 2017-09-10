@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchGyms } from '../actions';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps/lib";
 import SearchBox from "react-google-maps/lib/places/SearchBox";
-import SideBar from "./Sidebar";
+import SideBar from "../components/Sidebar";
 
 const INPUT_STYLE = {
   boxSizing: `border-box`,

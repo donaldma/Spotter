@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { fetchDetails } from '../actions';
 import Stars from 'react-stars';
 import PhoneNumber from 'react-phone-number';
-import NoRatings from './LargeDetailsNoRatings';
-import Ratings from './LargeDetailsRatings';
-import Open from './LargeDetailsOpen';
-import Closed from './LargeDetailsClosed';
-import NoHours from './LargeDetailsNoHours';
+import NoRatings from '../components/LargeDetailsNoRatings';
+import Ratings from '../components/LargeDetailsRatings';
+import Open from '../components/LargeDetailsOpen';
+import Closed from '../components/LargeDetailsClosed';
+import NoHours from '../components/LargeDetailsNoHours';
 
 class LargeDetails extends Component {
   componentDidMount() {

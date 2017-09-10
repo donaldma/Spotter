@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'moment';
 import SmallDetails from './SmallDetails'
-import LargeDetails from './LargeDetails'
+import LargeDetails from '../containers/LargeDetails'
 
 class SideBar extends Component {
   constructor(props) {
