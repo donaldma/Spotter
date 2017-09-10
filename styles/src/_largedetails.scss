@@ -53,24 +53,14 @@
 }
 
 .largedetails-content {
-  // overflow-y: scroll;
   padding-top: 80px;
   height: 100%;
 }
 
 .largedetails-section {
-  padding: 24px 32px;
+  padding: 20px 32px;
   border-bottom: 1px solid #ddd;
   text-align: center;
-}
-
-.largedetails-date {
-  font-size: 2em;
-}
-
-.largedetails-time {
-  display: block;
-  font-size: 1.6em;
 }
 
 .largedetails-body-text {
@@ -161,4 +151,29 @@ a.largedetails-gympage {
   margin-top: 0.1em;
   position: absolute;
   left: 15px;
+}
+
+.largedetails-footer {
+  border-radius: 0 0 4px 4px;
+  align-items: center;
+  padding: 5px;
+}
+
+.largedetails-hours-tile {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.largedetails-hours-body {
+  font-size: 1.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+
+.largedetails-hours-section {
+  padding: 20px 32px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }

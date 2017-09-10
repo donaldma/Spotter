@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PhoneNumber from 'react-phone-number';
+import Hours from './LargeDetailsHoursToggle';
 
-export default class LargeDetailsClosed extends Component {
+export default class LargeDetailsOpen extends Component {
+
   render() {
     
     const open_color = {
@@ -28,9 +30,10 @@ export default class LargeDetailsClosed extends Component {
                 <span className="largedetails-body-text" style={open_color}>Open Now</span>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
-          <div className="largedetails-section">
+          <Hours details={this.props.details} />          
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -63,9 +66,10 @@ export default class LargeDetailsClosed extends Component {
                 <span className="largedetails-body-text" style={open_color}>Open Now</span>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
-          <div className="largedetails-section">
+          <Hours details={this.props.details} />          
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -98,9 +102,10 @@ export default class LargeDetailsClosed extends Component {
                 <span className="largedetails-body-text" style={open_color}>Open Now</span>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
-          <div className="largedetails-section">
+          <Hours details={this.props.details} />          
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -140,9 +145,10 @@ export default class LargeDetailsClosed extends Component {
               <span className="largedetails-body-text" style={open_color}>Open Now</span>
             </div>
           </div>
-          <a href="#" className="main-button">Go to gym page</a>                        
         </div>
-        <div className="largedetails-section">
+        <Hours details={this.props.details} />
+        <div className="largedetails-footer">
+          <a href="#" className="main-button">Go to gym page</a>                                
         </div>
       </div> 
     );

@@ -15,9 +15,11 @@ export default class LargeDetailsNoHours extends Component {
                 <span className="largedetails-body-text">{this.props.details.formatted_address}</span>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
           <div className="largedetails-section">
+          </div>
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -42,9 +44,11 @@ export default class LargeDetailsNoHours extends Component {
                 <a href={this.props.details.website} target='_blank'><span className="largedetails-body-text-website">{this.props.details.website}</span></a>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
           <div className="largedetails-section">
+          </div>
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -69,9 +73,11 @@ export default class LargeDetailsNoHours extends Component {
                 <PhoneNumber number={this.props.details.international_phone_number} className="largedetails-body-text"/>
               </div>
             </div>
-            <a href="#" className="main-button">Go to gym page</a>                        
           </div>
           <div className="largedetails-section">
+          </div>
+          <div className="largedetails-footer">
+            <a href="#" className="main-button">Go to gym page</a>                                
           </div>
         </div> 
       );
@@ -103,9 +109,11 @@ export default class LargeDetailsNoHours extends Component {
               <a href={this.props.details.website} target='_blank'><span className="largedetails-body-text-website">{this.props.details.website}</span></a>
             </div>
           </div>
-          <a href="#" className="main-button">Go to gym page</a>                        
         </div>
         <div className="largedetails-section">
+        </div>
+        <div className="largedetails-footer">
+          <a href="#" className="main-button">Go to gym page</a>
         </div>
       </div> 
     );

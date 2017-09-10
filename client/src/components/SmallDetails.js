@@ -10,7 +10,7 @@ class SmallDetails extends Component {
 
   render() {
     const { gym } = this.props;
-
+    
     const open_color = {
       color: '#3aa33c'
     }
