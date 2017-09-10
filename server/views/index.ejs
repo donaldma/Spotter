@@ -14,26 +14,30 @@
 </head>
 
 <body class="site">
-  <!-- <div class="animationload">
+  <div class="animationload">
     <div class="loader">&nbsp;</div>
   </div>
   <script>
     $(window).ready(function() {
       setTimeout(function() {
         $('.animationload').hide();
-      }, 3000);
+      }, 1500);
     });
-  </script> -->
+  </script>
   <% include partials/_navbar.ejs %>
   <div class="site-content">
-    <div class="container">
-      <div class="site-branding">
-        <h1 class="site-title title-image"><a href="/" rel="home"><img src="/styles/imgs/logo.png" ></a></h1>
+    <div class="container home-container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="intro-title">Title</h1>
+          <p class="intro-text">Sub Title</p>
+          <a href="/search" class="home-button">Find a Gym</a>          
+        </div>
       </div>
     </div>
   </div>
   <footer class="copyright">
-    <p>Copyright &copy; 2017 Spotter. All Right Reserved.</p>
+    <p>&copy; 2017 Spotter - All Rights Reserved.</p>
   </footer>
 </body>
 
