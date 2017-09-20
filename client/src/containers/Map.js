@@ -112,6 +112,7 @@ class Map extends Component {
       }
     })
   }
+  
   handleMobileMarkerClick = (e) => {
     const { gyms } = this.props
     gyms.map((gym) => {
@@ -121,31 +122,18 @@ class Map extends Component {
       const gym_lat = gym.geometry.location.lat();
       const gym_lng = gym.geometry.location.lng();
       if (Math.abs(lat - gym_lat) < threshold && Math.abs(lng - gym_lng) < threshold) {
+        console.log(gym)
         this.refs.mobile.toggleHidden(null);
         this.refs.mobile.toggleHidden(gym);
-        this.setState({
-          mapHidden: true
-        })
       }
-    })
-  }
-
-  toggleMap = () => {
-    this.setState({
-      mapHidden: false    
     })
   }
  
   render() {
-    if(this.state.mapHidden === false) {
-      return (
-        <div>
-          <Media maxWidth={767}>
-            <div className="alert alert-warning">
-              <strong>Mobile Coming Soon</strong>
-            </div>
-          </Media>
-          <div className="mapcontainer-hidden">
+    return (
+      <div>
+        <Media maxWidth={767}>
+          <div className="mapcontainer-mobile">
             <SearchBoxGoogleMap
               containerElement={
                 <div style={{ height: '100%'}} />
@@ -159,21 +147,17 @@ class Map extends Component {
               onPlacesChanged={this.handlePlacesChanged}
               markers={this.state.markers}
               gyms={this.props.gyms}
-              onMarkerClick={this.handleMarkerClick}
+              onMarkerClick={this.handleMobileMarkerClick}
               zoom={this.state.zoom}
             />
           </div>
-            <SideBar 
-              ref="sidebar"
-              gyms={this.props.gyms}
-            />
-            <div id="map" />
-        </div>
-      );
-    }
-    return (
-      <div>
-        <div className="mapcontainer-hidden">
+          <SideBarMobile 
+            ref="mobile"
+          />
+          <div id="map" />
+        </Media>
+
+        <div className="mapcontainer-desktop">
           <SearchBoxGoogleMap
             containerElement={
               <div style={{ height: '100%'}} />
@@ -187,13 +171,13 @@ class Map extends Component {
             onPlacesChanged={this.handlePlacesChanged}
             markers={this.state.markers}
             gyms={this.props.gyms}
-            onMarkerClick={this.handleMobileMarkerClick}
+            onMarkerClick={this.handleMarkerClick}
             zoom={this.state.zoom}
           />
         </div>
-          <SideBarMobile
-            ref="mobile"          
-            toggleMap={this.toggleMap}
+          <SideBar 
+            ref="sidebar"
+            gyms={this.props.gyms}
           />
           <div id="map" />
       </div>

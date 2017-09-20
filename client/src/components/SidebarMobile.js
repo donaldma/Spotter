@@ -17,23 +17,37 @@ class SideBarMobile extends Component {
     })
   }
 
+  toggleMap = () => {
+    this.setState({
+      selectedGym: null  
+    })
+  }
+
   renderLargeDetails() {
     return (
       <LargeDetailsMobile 
         gym={this.state.selectedGym}  
         toggleHidden={this.toggleHidden.bind(this)}
-        toggleMap={this.props.toggleMap}  
+        toggleMap={this.toggleMap}  
       />
     );
   }
 
   render() {
+    if(this.state.selectedGym) {
+      return (
+        <div>
+          <div className="sidebar-mobile">
+            { this.state.selectedGym && this.renderLargeDetails() }
+          </div>
+        </div>      
+      );
+    }
     return (
       <div>
-        <div className="sidebar-mobile">
-          { this.renderLargeDetails() }
+        <div className="sidebar">
         </div>
-      </div>      
+      </div>  
     );
   }
 }

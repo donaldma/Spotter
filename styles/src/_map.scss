@@ -6,7 +6,7 @@
   left: 0;
 }
 
-.mapcontainer-hidden {
+.mapcontainer-desktop {
   top: 25px;
   right: 380px;
   bottom: 0;
@@ -29,7 +29,21 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .mapcontainer-hidden {
+  .mapcontainer-mobile {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    border-width: 0px;
+    margin: 0px;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mapcontainer-desktop {
     display: none !important;
   }
 }
