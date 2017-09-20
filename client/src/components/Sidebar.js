@@ -12,19 +12,19 @@ class SideBar extends Component {
     }
   }
 
-  toggleHidden(e) {
+  toggleHidden(gym) {
     this.setState({
-      selectedGym: e
+      selectedGym: gym
     })
   }
 
   renderGyms() {
-    return this.props.gyms.map((e, index) => {
+    return this.props.gyms.map((gym, index) => {
       return (
         <SmallDetails 
           key={index}
-          gym={e}
-          toggleHidden={this.toggleHidden.bind(this, e)} 
+          gym={gym}
+          toggleHidden={this.toggleHidden.bind(this, gym)} 
         />
       );
     })
@@ -34,7 +34,7 @@ class SideBar extends Component {
     return (
       <LargeDetails  
         gym={this.state.selectedGym}  
-        toggleHidden={this.toggleHidden.bind(this)}   
+        toggleHidden={this.toggleHidden.bind(this)}
       />
     );
   }

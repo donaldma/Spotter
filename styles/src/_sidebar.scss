@@ -12,12 +12,35 @@
   overflow-y: scroll;
 }
 
-// @media only screen and (max-width: 767px) {
-//   .sidebar {
-//     display: block;
-//     width: 100%;
-//   }
-// }
+.sidebar-mobile {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  position: fixed;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: #f7f8f9;
+  left: auto;
+  display: block;
+  width: 380px;
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 767px) {
+  .sidebar-mobile {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);  
+    position: fixed;  
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: #f7f8f9;
+    left: auto;
+    display: block;
+    width: 100%;
+    overflow-y: scroll;  
+  }
+}
 
 @media only screen and (max-width: 767px) {
   .sidebar {

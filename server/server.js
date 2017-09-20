@@ -10,9 +10,7 @@ const bodyParser  = require("body-parser");
 const router = express.Router();
 const dbHelper = require("./lib/dbHelper")(knex);
 const knexLogger = require('knex-logger');
-// const apiRoutes = require("./routes/api");
-// const userRoutes = require("./routes/user");
-// const profileRoutes = require("./routes/profile");
+const PORT = 4000
 
 const session = require("express-session")({
     secret: "hello something is something blah",
@@ -46,22 +44,18 @@ app.get('/search', (req, res) => {
   res.render('search');
 })
 
-// app.use('/user', userRoutes(dbHelper));
-// app.use('/profile', profileRoutes(dbHelper));
-// app.use('/api', apiRoutes(dbHelper));
-
 app.use('/404', (req, res, next) => {
-  res.status(404);
+  res.status(404).render('404');
 })
 
 app.use('/500', (req, res, next) => {
-  res.status(500);
+  res.status(500).render('500');
 })
 
 app.use((req, res, next) => {
   res.redirect('/404');
 })
 
-server.listen( process.env.PORT || 4000, () => {
-  console.log('Server running');
+server.listen( process.env.PORT || PORT, () => {
+  console.log('Server running on port', PORT);
 });

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGyms } from '../actions';
+import { fetchGyms, fetchDetails } from '../actions';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps/lib";
 import SearchBox from "react-google-maps/lib/places/SearchBox";
 import SideBar from "../components/Sidebar";
+import SideBarMobile from "../components/SidebarMobile";
+import Media from 'react-responsive';
 
 const INPUT_STYLE = {
   boxSizing: `border-box`,
@@ -56,7 +58,9 @@ class Map extends Component {
         lat: 49.2827291,
         lng: -123.12073750000002,
       },
-      markers: []
+      markers: [],
+      mapHidden: false,
+      selectedGym: null
     };
   }
 
@@ -103,37 +107,95 @@ class Map extends Component {
       const gym_lat = gym.geometry.location.lat();
       const gym_lng = gym.geometry.location.lng();
       if (Math.abs(lat - gym_lat) < threshold && Math.abs(lng - gym_lng) < threshold) {
-        this.refs.sidebar.toggleHidden(gym);       
+        this.refs.sidebar.toggleHidden(null);
+        this.refs.sidebar.toggleHidden(gym);
       }
+    })
+  }
+  handleMobileMarkerClick = (e) => {
+    const { gyms } = this.props
+    gyms.map((gym) => {
+      const lat = e.latLng.lat();
+      const lng = e.latLng.lng();
+      const threshold = 0.000001;
+      const gym_lat = gym.geometry.location.lat();
+      const gym_lng = gym.geometry.location.lng();
+      if (Math.abs(lat - gym_lat) < threshold && Math.abs(lng - gym_lng) < threshold) {
+        this.refs.mobile.toggleHidden(null);
+        this.refs.mobile.toggleHidden(gym);
+        this.setState({
+          mapHidden: true
+        })
+      }
+    })
+  }
+
+  toggleMap = () => {
+    this.setState({
+      mapHidden: false    
     })
   }
  
   render() {
+    if(this.state.mapHidden === false) {
+      return (
+        <div>
+          <Media maxWidth={767}>
+            <div className="alert alert-warning">
+              <strong>Mobile Coming Soon</strong>
+            </div>
+          </Media>
+          <div className="mapcontainer-hidden">
+            <SearchBoxGoogleMap
+              containerElement={
+                <div style={{ height: '100%'}} />
+              }
+              mapElement={
+                <div style={{ height: '100%'}} />
+              }
+              center={this.state.center}
+              onMapMounted={this.handleMapMounted}
+              onSearchBoxMounted={this.handleSearchBoxMounted}
+              onPlacesChanged={this.handlePlacesChanged}
+              markers={this.state.markers}
+              gyms={this.props.gyms}
+              onMarkerClick={this.handleMarkerClick}
+              zoom={this.state.zoom}
+            />
+          </div>
+            <SideBar 
+              ref="sidebar"
+              gyms={this.props.gyms}
+            />
+            <div id="map" />
+        </div>
+      );
+    }
     return (
       <div>
-      <div className="mapcontainer">
-        <SearchBoxGoogleMap
-          containerElement={
-            <div style={{ height: '100%'}} />
-          }
-          mapElement={
-            <div style={{ height: '100%'}} />
-          }
-          center={this.state.center}
-          onMapMounted={this.handleMapMounted}
-          onSearchBoxMounted={this.handleSearchBoxMounted}
-          onPlacesChanged={this.handlePlacesChanged}
-          markers={this.state.markers}
-          gyms={this.props.gyms}
-          onMarkerClick={this.handleMarkerClick}
-          zoom={this.state.zoom}
-        />
-      </div>
-        <SideBar 
-          ref="sidebar"
-          gyms={this.props.gyms}
-        />
-        <div id="map" />
+        <div className="mapcontainer-hidden">
+          <SearchBoxGoogleMap
+            containerElement={
+              <div style={{ height: '100%'}} />
+            }
+            mapElement={
+              <div style={{ height: '100%'}} />
+            }
+            center={this.state.center}
+            onMapMounted={this.handleMapMounted}
+            onSearchBoxMounted={this.handleSearchBoxMounted}
+            onPlacesChanged={this.handlePlacesChanged}
+            markers={this.state.markers}
+            gyms={this.props.gyms}
+            onMarkerClick={this.handleMobileMarkerClick}
+            zoom={this.state.zoom}
+          />
+        </div>
+          <SideBarMobile
+            ref="mobile"          
+            toggleMap={this.toggleMap}
+          />
+          <div id="map" />
       </div>
     );
   }
@@ -141,8 +203,9 @@ class Map extends Component {
 
 function mapStateToProps(state) {
   return {
-    gyms: state.gyms
+    gyms: state.gyms,
+    details: state.details
   }
 }
 
-export default connect(mapStateToProps, { fetchGyms })(Map);
+export default connect(mapStateToProps, { fetchGyms, fetchDetails })(Map);

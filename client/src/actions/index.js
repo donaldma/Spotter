@@ -18,8 +18,7 @@ export function fetchGyms(lat, lng) {
     var request = {
       location,
       radius: '1500',
-      type: ['gym'],
-      keyword: ['Community']
+      type: ['gym']
     };
 
     var service = new google.maps.places.PlacesService(map);
@@ -64,7 +63,6 @@ export function fetchDetails(placeId) {
     function callback(place, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         dispatch(setSearchDetails(place));
-        console.log(place)
       }
     }
   }
@@ -72,7 +70,7 @@ export function fetchDetails(placeId) {
   function setSearchDetails(place) {
     return {
       type: FETCH_DETAILS,
-      payload: { place }
+      payload: place
     };
   }
 }

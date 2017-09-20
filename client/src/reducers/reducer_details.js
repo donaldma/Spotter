@@ -6,7 +6,7 @@ export default function (state = [], action) {
     case CLEAR_DETAILS:
       return state = [];
     case FETCH_DETAILS:
-      return [ action.payload.place, ...state ];
+      return [ action.payload, ...state ] 
     default:
       return state;
   }

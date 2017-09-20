@@ -6,6 +6,14 @@
   left: 0;
 }
 
+.mapcontainer-hidden {
+  top: 25px;
+  right: 380px;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+}
+
 @media only screen and (max-width: 767px) {
   .mapcontainer {
     z-index: 1;
@@ -20,11 +28,11 @@
   }
 }
 
-// @media only screen and (max-width: 767px) {
-//   .mapcontainer {
-//     display: none;
-//   }
-// }
+@media only screen and (max-width: 767px) {
+  .mapcontainer-hidden {
+    display: none !important;
+  }
+}
 
 .gm-style-mtc {
   display: none;
@@ -36,4 +44,11 @@
 
 .search-box {
   display: none;
+}
+
+.alert-warning {
+  margin-top: 250px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }

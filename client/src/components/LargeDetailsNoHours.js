@@ -16,8 +16,6 @@ export default class LargeDetailsNoHours extends Component {
               </div>
             </div>
           </div>
-          <div className="largedetails-section">
-          </div>
           <div className="largedetails-footer">
             <a href="#" className="main-button">Go to gym page</a>                                
           </div>
@@ -45,8 +43,6 @@ export default class LargeDetailsNoHours extends Component {
               </div>
             </div>
           </div>
-          <div className="largedetails-section">
-          </div>
           <div className="largedetails-footer">
             <a href="#" className="main-button">Go to gym page</a>                                
           </div>
@@ -70,11 +66,9 @@ export default class LargeDetailsNoHours extends Component {
                 <i className="fa fa-phone fa-lg big-icon" aria-hidden="true"></i>
               </div>
               <div className="col-sm-10">
-                <PhoneNumber number={this.props.details.international_phone_number} className="largedetails-body-text"/>
+                <PhoneNumber number={this.props.details.international_phone_number} className="largedetails-body-text"/> 
               </div>
             </div>
-          </div>
-          <div className="largedetails-section">
           </div>
           <div className="largedetails-footer">
             <a href="#" className="main-button">Go to gym page</a>                                
@@ -109,8 +103,6 @@ export default class LargeDetailsNoHours extends Component {
               <a href={this.props.details.website} target='_blank'><span className="largedetails-body-text-website">{this.props.details.website}</span></a>
             </div>
           </div>
-        </div>
-        <div className="largedetails-section">
         </div>
         <div className="largedetails-footer">
           <a href="#" className="main-button">Go to gym page</a>

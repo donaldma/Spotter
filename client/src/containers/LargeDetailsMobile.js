@@ -9,25 +9,25 @@ import Open from '../components/LargeDetailsOpen';
 import Closed from '../components/LargeDetailsClosed';
 import NoHours from '../components/LargeDetailsNoHours';
 
-class LargeDetails extends Component {
+class LargeDetailsMobile extends Component {
   componentDidMount() {
     this.props.fetchDetails(this.props.gym.place_id);    
   }
 
   handleClick = () => {
-    this.props.toggleHidden();
+    this.props.toggleMap()
   }
   
   render() {
     
-    if(_.size(this.props.details) === 0 ){
+    if(!this.props.details[0]) {
       return (
         <div className="loading">Loading...</div>
       );
     }
     
     const { gym } = this.props;
-    
+
     if(!gym.rating) {
       if(gym.opening_hours && gym.opening_hours.open_now) {
         return (
@@ -84,4 +84,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect (mapStateToProps, { fetchDetails })(LargeDetails);
+export default connect (mapStateToProps, { fetchDetails })(LargeDetailsMobile);
