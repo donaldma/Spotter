@@ -122,7 +122,6 @@ class Map extends Component {
       const gym_lat = gym.geometry.location.lat();
       const gym_lng = gym.geometry.location.lng();
       if (Math.abs(lat - gym_lat) < threshold && Math.abs(lng - gym_lng) < threshold) {
-        console.log(gym)
         this.refs.mobile.toggleHidden(null);
         this.refs.mobile.toggleHidden(gym);
       }
